@@ -29,7 +29,7 @@ export default function App() {
             } else if (route.name === 'Settings') {
               iconName = 'options-outline'
             }
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return <Ionicons style={styles.icons} name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: 'gray',
           tabBarInactiveTintColor: 'black'
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
   container: {
     padding: 16
   },
+  icons: {
+    marginTop: 16
+  }
 });
 
 const Tab = createBottomTabNavigator();
