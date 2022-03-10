@@ -8,7 +8,7 @@ const JournalEntry = () => {
   let date = new Date().toDateString();
 
   const [journalText, setJournalText] = useState('');
-  console.log(journalText)
+  let newEntry = '';
 
   const [imageModal, setImageModal] = useState(false);
   const [imageType, setImageType] = useState(null);
@@ -165,10 +165,20 @@ const JournalEntry = () => {
                 marginHorizontal: 50,
                 marginVertical: 10,
               }}
+              onPress={ () => {
+                Alert.alert('Journal entry submitted');
+                newEntry = journalText
+                console.log(newEntry);
+                setPreviewModal(!previewModal);
+                setJournalText('');
+              }}
             />
           </View>
         </View>
       </Modal>
+      <View>
+        <Text>{newEntry}</Text>
+      </View>
     </ScrollView>
   )
 }
