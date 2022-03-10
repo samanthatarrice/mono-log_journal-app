@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { ScrollView, View, Text, TextInput, Alert, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, TextInput, Alert, StyleSheet, Modal } from 'react-native';
 import { Icon, Button, ButtonGroup } from 'react-native-elements';
-import { Modal } from 'react-native';
 
 const JournalEntry = () => {
   

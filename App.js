@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Home from './components/Home';
 import JournalEntry from './components/JournalEntry';
-import Calendar from './components/Calendar';
+import CalendarComponent from './components/Calendar';
 import Search from './components/Search'
 import Settings from './components/Settings';
 
@@ -36,7 +36,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name='New Entry' component={JournalEntry} />
-        <Tab.Screen name='Calendar' component={Calendar} />
+        <Tab.Screen name='Calendar' component={CalendarComponent} />
         <Tab.Screen name='Search' component={Search} />
         <Tab.Screen name='Settings' component={Settings} />
       </Tab.Navigator>
