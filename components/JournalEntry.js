@@ -168,6 +168,7 @@ const JournalEntry = () => {
               onPress={ () => {
                 Alert.alert('Journal entry submitted');
                 newEntry = journalText
+                //Trying to set the newEntry text to the journalText and then show it below when this submit button is pressed.
                 console.log(newEntry);
                 setPreviewModal(!previewModal);
                 setJournalText('');
