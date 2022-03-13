@@ -1,22 +1,35 @@
-import React, { useState } from 'react';
-import { Text } from 'react-native';
-import {Calendar, CalendarList, Agenda } from 'react-native-calendars'
+import React, {  } from 'react';
+import { StyleSheet } from 'react-native';
+import {Calendar } from 'react-native-calendars'
 
 const CalendarComponent = () => {
   return (
     <Calendar
+      style={styles.calendar}
+      monthFormat={'MMM yyyy'}
+      enableSwipeMonths={true}
       onDayPress={day => {
         console.log('selected day', day);
       }}
-      monthFormat={'MMM yyyy'}
       onMonthChange={month => {
         console.log('month changed', month);
       }}
       onPressArrowLeft={subtractMonth => subtractMonth()}
       onPressArrowRight={addMonth => addMonth()}
-      disableAllTouchEventsForDisabledDays={true}
+      theme={{
+        monthTextColor: 'blue'
+      }}
     />
   )
 }
 
 export default CalendarComponent;
+
+const styles = StyleSheet.create({
+  calendar: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    height: 350
+  }
+})
+

@@ -7,7 +7,7 @@ const JournalEntry = () => {
   let date = new Date().toDateString();
 
   const [journalText, setJournalText] = useState('');
-  let newEntry = '';
+  const [newEntry, setNewEntry] = useState('');
 
   const [imageModal, setImageModal] = useState(false);
   const [imageType, setImageType] = useState(null);
@@ -33,7 +33,7 @@ const JournalEntry = () => {
           style={styles.textarea}
           onChangeText={journalText => setJournalText(journalText)} 
           defaultValue={journalText}
-          // name='journalText'
+          value={journalText}
           multiline
           numberOfLines={10}
           allowFontScaling
@@ -154,6 +154,7 @@ const JournalEntry = () => {
             <Text style={{fontWeight:'bold', fontSize:20}}>Your Journal Entry:</Text>
             <Text style={{marginTop:10}}>{journalText}</Text>
             <Button
+              className='previewModalBtn'
               title='Submit'
               buttonStyle={{
                 backgroundColor: 'rgb(28, 109, 208)',
@@ -165,12 +166,10 @@ const JournalEntry = () => {
                 marginVertical: 10,
               }}
               onPress={ () => {
-                Alert.alert('Journal entry submitted');
-                newEntry = journalText
-                //Trying to set the newEntry text to the journalText and then show it below when this submit button is pressed.
-                console.log(newEntry);
+                setNewEntry(journalText);
                 setPreviewModal(!previewModal);
                 setJournalText('');
+                Alert.alert('Journal entry submitted');
               }}
             />
           </View>
