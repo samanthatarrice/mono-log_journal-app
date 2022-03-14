@@ -1,10 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { Card } from 'react-native-elements';
 
-const SubmittedEntry = () => {
-  <View>
-    <Text>This is where the submitted journal entry will show<Text/>
-  </View>
+const SubmittedEntry = (props) => {
+  
+  const {journalData} = props.route.params;
+  console.log(journalData)
+  const submittedEntries = journalData.map(entry => 
+    
+    <Card key={entry.id}>
+      <Card.Title>{entry.title}</Card.Title>
+      <Text style={{textAlign:'center',fontSize:10,marginBottom:20}}>{entry.date}</Text>
+      <Card.Divider />
+      <Text>{entry.text}</Text>
+    </Card>
+    
+  );
+
+  return (
+    <ScrollView>
+      {submittedEntries}
+    </ScrollView>
+  );
 }
 
 export default SubmittedEntry;

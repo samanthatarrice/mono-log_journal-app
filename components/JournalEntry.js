@@ -2,12 +2,21 @@ import React, { useState } from 'react';
 import { ScrollView, View, Text, TextInput, Alert, StyleSheet, Modal } from 'react-native';
 import { Icon, Button, ButtonGroup } from 'react-native-elements';
 
-const JournalEntry = () => {
+const JournalEntry = ({navigation}) => {
   
   let date = new Date().toDateString();
 
-  const [journalText, setJournalText] = useState('');
-  const [newEntry, setNewEntry] = useState('');
+  const [journalData, setJournalData] = useState([
+    {
+      id: 0,
+      date: 'date',
+      title: 'newJournalTitle',
+      text: 'newJournalText',
+      image: ''
+    }
+  ]);
+  const [newJournalTitle, setNewJournalTitle] = useState('');
+  const [newJournalText, setNewJournalText] = useState('');
 
   const [imageModal, setImageModal] = useState(false);
   const [imageType, setImageType] = useState(null);
@@ -16,24 +25,46 @@ const JournalEntry = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text>{date}</Text>
-      <View style={styles.text}>
-        <Icon name='location-outline' type='ionicon' />
-        <Text>Location</Text>
+      <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+        <View>
+          <Text>{date}</Text>
+          <View style={styles.text}>
+            <Icon name='location-outline' type='ionicon' />
+            <Text>Location</Text>
+          </View>
+        </View>
+        <Icon 
+          style={{
+            padding:10,
+            backgroundColor:'#FFF',
+            borderRadius:50
+          }}
+          size={35}
+          name='grin'
+          type='font-awesome-5' />
       </View>
+      
       <View style={styles.text}>
         <Icon 
           style={{marginLeft:2.5, marginRight:5}} 
           name='pencil' 
           type='font-awesome' />
-        <Text>Title</Text>
+        <Text style={{fontWeight:'bold'}}>Title:</Text>
+        <TextInput
+          style={{marginLeft:10,backgroundColor:'#FFF',width:'100%',height:40,paddingHorizontal:10}}
+          onChangeText={newJournalTitle => setNewJournalTitle(newJournalTitle)}
+          defaultValue={newJournalTitle}
+          value={newJournalTitle}
+          autoCapitalize='words'
+          placeholder='Your title here!'
+        />
       </View>
       <View style={{margin:10}}>
         <TextInput 
           style={styles.textarea}
-          onChangeText={journalText => setJournalText(journalText)} 
-          defaultValue={journalText}
-          value={journalText}
+          onChangeText={newJournalText => setNewJournalText(newJournalText)} 
+          defaultValue={newJournalText}
+          value={newJournalText}
           multiline
           numberOfLines={10}
           allowFontScaling
@@ -152,7 +183,8 @@ const JournalEntry = () => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={{fontWeight:'bold', fontSize:20}}>Your Journal Entry:</Text>
-            <Text style={{marginTop:10}}>{journalText}</Text>
+            <Text>{newJournalTitle}</Text>
+            <Text style={{marginTop:10}}>{newJournalText}</Text>
             <Button
               className='previewModalBtn'
               title='Submit'
@@ -166,17 +198,29 @@ const JournalEntry = () => {
                 marginVertical: 10,
               }}
               onPress={ () => {
-                setNewEntry(journalText);
                 setPreviewModal(!previewModal);
-                setJournalText('');
+                journalData.push({
+                  id: journalData.length,
+                  date: date,
+                  title: newJournalTitle,
+                  text: newJournalText,
+                  image: ''
+                });
+                setJournalData(journalData);
+                console.log(journalData)
+                setNewJournalText('');
+                setNewJournalTitle('');
                 Alert.alert('Journal entry submitted');
+                
+                navigation.navigate('Submitted Entry', { journalData });
+                
               }}
             />
           </View>
         </View>
       </Modal>
-      <View>
-        <Text>{newEntry}</Text>
+      <View style={{marginBottom:50}}>
+        {/* {submittedEntries} */}
       </View>
     </ScrollView>
   )
@@ -190,14 +234,15 @@ const styles = StyleSheet.create({
     marginTop: 10, 
     marginRight:'auto', 
     display:'flex', 
-    flexDirection:'row'
+    flexDirection:'row',
+    alignItems:'center'
   },
   textarea: {
     backgroundColor: '#FFF',
     padding: 10,
     marginHorizontal: -10,
     alignItems: 'flex-start',
-    marginTop: 10
+    marginTop: 5
   },
   centeredView: {
     flex: 1,
