@@ -1,27 +1,22 @@
 import React, { useState } from 'react';
-import { ScrollView, View, Text, TextInput, Alert, StyleSheet, Modal } from 'react-native';
+import { ScrollView, View, Text, TextInput, Alert, Modal, TouchableOpacity, StyleSheet, } from 'react-native';
 import { Icon, Button, ButtonGroup } from 'react-native-elements';
 
 const JournalEntry = ({navigation}) => {
   
   let date = new Date().toDateString();
 
-  const [journalData, setJournalData] = useState([
-    {
-      id: 0,
-      date: 'date',
-      title: 'newJournalTitle',
-      text: 'newJournalText',
-      image: ''
-    }
-  ]);
+  const [journalData, setJournalData] = useState([]);
   const [newJournalTitle, setNewJournalTitle] = useState('');
   const [newJournalText, setNewJournalText] = useState('');
 
   const [imageModal, setImageModal] = useState(false);
   const [imageType, setImageType] = useState(null);
 
+  const [moodModal, setMoodModal] = useState(false);
   const [previewModal, setPreviewModal] = useState(false);
+
+  const [moodIcon, setMoodIcon] = useState('grin')
 
   return (
     <ScrollView style={styles.container}>
@@ -33,17 +28,38 @@ const JournalEntry = ({navigation}) => {
             <Text>Location</Text>
           </View>
         </View>
-        <Icon 
-          style={{
-            padding:10,
-            backgroundColor:'#FFF',
-            borderRadius:50
-          }}
-          size={35}
-          name='grin'
-          type='font-awesome-5' />
+        <TouchableOpacity
+          onPress={() => setMoodModal(true)}>
+          <Icon 
+            style={{
+              padding:10,
+              backgroundColor:'#FFF',
+              borderRadius:50
+            }}
+            size={35}
+            name={moodIcon}
+            type='font-awesome-5' />
+        </TouchableOpacity>
       </View>
-      
+      <Modal
+        animationType='fade'
+        visible={moodModal} 
+        transparent={true}
+        onRequestClose={() => setMoodModal(!moodModal)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={{fontWeight:'bold', fontSize:20}}>Choose your mood:</Text>
+            <View style={{display:'flex',flexDirection:'row',justifyContent:'space-around',width:'100%',paddingTop:20}}>
+              <TouchableOpacity onPress={() => setMoodIcon('sad-tear')}><Icon size={45} name='sad-tear' type='font-awesome-5' /></TouchableOpacity>
+              <TouchableOpacity onPress={() => setMoodIcon('frown')}><Icon size={45} name='frown' type='font-awesome-5' /></TouchableOpacity>
+              <TouchableOpacity onPress={() => setMoodIcon('meh')}><Icon size={45} name='meh' type='font-awesome-5' /></TouchableOpacity>
+              <TouchableOpacity onPress={() => setMoodIcon('grin-beam')}><Icon size={45} name='grin-beam' type='font-awesome-5' /></TouchableOpacity>
+              <TouchableOpacity onPress={() => setMoodIcon('grin-hearts')}><Icon size={45} name='grin-hearts' type='font-awesome-5' /></TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <View style={styles.text}>
         <Icon 
           style={{marginLeft:2.5, marginRight:5}} 
@@ -184,6 +200,7 @@ const JournalEntry = ({navigation}) => {
           <View style={styles.modalView}>
             <Text style={{fontWeight:'bold', fontSize:20}}>Your Journal Entry:</Text>
             <Text>{newJournalTitle}</Text>
+            <Icon name={moodIcon} type='font-awesome-5' />
             <Text style={{marginTop:10}}>{newJournalText}</Text>
             <Button
               className='previewModalBtn'
@@ -203,6 +220,7 @@ const JournalEntry = ({navigation}) => {
                   id: journalData.length,
                   date: date,
                   title: newJournalTitle,
+                  mood: moodIcon,
                   text: newJournalText,
                   image: ''
                 });
@@ -210,6 +228,7 @@ const JournalEntry = ({navigation}) => {
                 console.log(journalData)
                 setNewJournalText('');
                 setNewJournalTitle('');
+                setMoodIcon('grin');
                 Alert.alert('Journal entry submitted');
                 
                 navigation.navigate('Submitted Entry', { journalData });
@@ -236,6 +255,9 @@ const styles = StyleSheet.create({
     display:'flex', 
     flexDirection:'row',
     alignItems:'center'
+  },
+  icon: {
+    
   },
   textarea: {
     backgroundColor: '#FFF',
