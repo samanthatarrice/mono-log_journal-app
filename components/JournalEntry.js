@@ -22,8 +22,40 @@ const JournalEntry = ({navigation}) => {
     color: '#C1F8CF'
   });
 
-  function submitEntry() {
-    setPreviewModal(!previewModal);
+  function handleSubmitEntry() {
+
+    //THESE KIND OF WORK, but it is delayed by one entry, and only shows the entry on the next onPress:
+    //   setJournalData(prevJournalData => [...prevJournalData,
+    //     {
+    //       id: journalData.length,
+    //       date: date,
+    //       title: newJournalTitle,
+    //       mood: {
+    //         name: moodIcon.name,
+    //         color: moodIcon.color
+    //       },
+    //       text: newJournalText,
+    //       image: ''
+    //     }
+    //   ]
+    // )
+    //   setJournalData(prevJournalData => (
+    //   [...prevJournalData,
+    //     {
+    //       id: journalData.length,
+    //       date: date,
+    //       title: newJournalTitle,
+    //       mood: {
+    //         name: moodIcon.name,
+    //         color: moodIcon.color
+    //       },
+    //       text: newJournalText,
+    //       image: ''
+    //     }
+    //   ]
+    // ))
+
+    //THIS WORKS, but it mutates state:
     journalData.push({
       id: journalData.length,
       date: date,
@@ -36,12 +68,13 @@ const JournalEntry = ({navigation}) => {
       image: ''
     });
     setJournalData(journalData);
-    console.log(journalData)
+    navigation.navigate('Submitted Entry', {journalData});
     setNewJournalText('');
     setNewJournalTitle('');
     setMoodIcon({name:'grin-alt',color:'#C1F8CF'});
+    setPreviewModal(!previewModal);
     Alert.alert('Journal entry submitted'); 
-    navigation.navigate('Submitted Entry', {journalData});
+
   }
 
   console.log('rendered')
@@ -270,7 +303,7 @@ const JournalEntry = ({navigation}) => {
                 marginHorizontal: 50,
                 marginVertical: 10,
               }}
-              onPress={() => submitEntry()}
+              onPress={() => handleSubmitEntry()}
             />
           </View>
         </View>
