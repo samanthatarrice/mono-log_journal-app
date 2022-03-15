@@ -35,7 +35,7 @@ export default function App() {
           headerStyle: {backgroundColor:'#488FB1'},
           headerTitleStyle: {color:'#FFF'},
           tabBarLabelStyle: {paddingBottom:10},
-          tabBarStyle: {height:85,backgroundColor:'#3E4985'},
+          tabBarStyle: {height:80,backgroundColor:'#3E4985'},
           tabBarActiveTintColor: '#C1F8CF',
           tabBarInactiveTintColor: '#FFF',
           

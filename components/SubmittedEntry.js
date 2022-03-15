@@ -9,7 +9,7 @@ const SubmittedEntry = (props) => {
   const submittedEntries = journalData.map(entry => 
     
     <Card style={{position:'absolute'}} key={entry.id}>
-      <Icon style={{position:'relative',marginLeft:'auto'}} size={35} name={entry.mood} type='font-awesome-5' />
+      <Icon style={{position:'relative',marginLeft:'auto'}} size={35} name={entry.mood.name} color={entry.mood.color} type='font-awesome-5' />
       <Card.Title style={{position:'relative',top:-30,marginBottom:-10}}>{entry.title}</Card.Title>
       <Text style={{textAlign:'center',fontSize:10,marginBottom:20}}>{entry.date}</Text>
       <Card.Divider />
@@ -18,11 +18,18 @@ const SubmittedEntry = (props) => {
     
   );
 
-  return (
-    <ScrollView>
-      {submittedEntries}
-    </ScrollView>
-  );
+    return (
+      
+        <ScrollView style={styles.container}>
+          {submittedEntries}
+        </ScrollView>
+      );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor:'#C1F8CF'
+  }
+})
 
 export default SubmittedEntry;
