@@ -8,9 +8,9 @@ const SubmittedEntry = (props) => {
   console.log(journalData)
   const submittedEntries = journalData.map(entry => 
     
-    <Card key={entry.id}>
-      <Card.Title>{entry.title}</Card.Title>
-      <Icon name={entry.mood} type='font-awesome-5' />
+    <Card style={{position:'absolute'}} key={entry.id}>
+      <Icon style={{position:'relative',marginLeft:'auto'}} size={35} name={entry.mood} type='font-awesome-5' />
+      <Card.Title style={{position:'relative',top:-30,marginBottom:-10}}>{entry.title}</Card.Title>
       <Text style={{textAlign:'center',fontSize:10,marginBottom:20}}>{entry.date}</Text>
       <Card.Divider />
       <Text>{entry.text}</Text>

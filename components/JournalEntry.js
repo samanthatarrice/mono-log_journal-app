@@ -31,13 +31,10 @@ const JournalEntry = ({navigation}) => {
         <TouchableOpacity
           onPress={() => setMoodModal(true)}>
           <Icon 
-            style={{
-              padding:10,
-              backgroundColor:'#FFF',
-              borderRadius:50
-            }}
+            style={{padding:10,backgroundColor:'#4FD3C4',borderRadius:50}}
             size={35}
             name={moodIcon}
+            color='#FFF'
             type='font-awesome-5' />
         </TouchableOpacity>
       </View>
@@ -45,12 +42,11 @@ const JournalEntry = ({navigation}) => {
         animationType='fade'
         visible={moodModal} 
         transparent={true}
-        onRequestClose={() => setMoodModal(!moodModal)}
-      >
+        onRequestClose={() => setMoodModal(!moodModal)} >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={{fontWeight:'bold', fontSize:20}}>Choose your mood:</Text>
-            <View style={{display:'flex',flexDirection:'row',justifyContent:'space-around',width:'100%',paddingTop:20}}>
+            <Text style={{fontWeight:'bold',fontSize:20}}>Choose your mood:</Text>
+            <View style={styles.moodsContainer}>
               <TouchableOpacity onPress={() => setMoodIcon('sad-tear')}><Icon size={45} name='sad-tear' type='font-awesome-5' /></TouchableOpacity>
               <TouchableOpacity onPress={() => setMoodIcon('frown')}><Icon size={45} name='frown' type='font-awesome-5' /></TouchableOpacity>
               <TouchableOpacity onPress={() => setMoodIcon('meh')}><Icon size={45} name='meh' type='font-awesome-5' /></TouchableOpacity>
@@ -67,7 +63,7 @@ const JournalEntry = ({navigation}) => {
           type='font-awesome' />
         <Text style={{fontWeight:'bold'}}>Title:</Text>
         <TextInput
-          style={{marginLeft:10,backgroundColor:'#FFF',width:'100%',height:40,paddingHorizontal:10}}
+          style={styles.title}
           onChangeText={newJournalTitle => setNewJournalTitle(newJournalTitle)}
           defaultValue={newJournalTitle}
           value={newJournalTitle}
@@ -95,15 +91,12 @@ const JournalEntry = ({navigation}) => {
           name: 'add-circle',
           type: 'ionicons',
           size: 30,
-          color: 'white',
+          color: '#FFF8F3',
         }}
         loading={false}
         loadingProps={{ size: 'small', color: 'white' }}
-        buttonStyle={{
-          backgroundColor: 'rgba(111, 202, 186, 1)',
-          borderRadius: 5,
-        }}
-        titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+        buttonStyle={{backgroundColor: '#4FD3C4',borderRadius:30}}
+        titleStyle={{ fontWeight: 'bold', fontSize: 20 }}
         containerStyle={{
           height: 80,
           width: '100%',
@@ -116,32 +109,37 @@ const JournalEntry = ({navigation}) => {
         animationType='fade'
         visible={imageModal}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
           setImageModal(!imageModal);
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={{alignSelf:'flex-end'}}>
-              <Icon
-                style={{margin:-5, padding:-10}}
-                name='close'
-                type='ionicons'
-                size={30}
-              />
+              <TouchableOpacity
+                onPress={() => {
+                  setImageModal(!imageModal);
+                  setImageType(null);
+                }} >
+                <Icon
+                  style={{margin:-5, padding:-10}}
+                  name='close'
+                  type='ionicons'
+                  size={30}
+                />
+              </TouchableOpacity>
             </View>
             <ButtonGroup
               buttons={[
                 <Icon
                   name='camera'
                   type='feather'
-                  size={140}
+                  size={100}
                   color='white'
                 />,
                 <Icon
                   name='image'
                   type='feather'
-                  size={140}
+                  size={100}
                   color='white'
                 />
               ]}
@@ -151,15 +149,16 @@ const JournalEntry = ({navigation}) => {
                 setImageType(value);
               }}
               containerStyle={{
-                height: 160,
+                height: 120,
+                marginBottom: 25,
+                width: 270
               }}
               buttonStyle={{
-                paddingVertical:10,
                 backgroundColor:'lightgray',
                 
               }}
               selectedButtonStyle={{
-                backgroundColor: 'rgba(111, 202, 186, 1)',
+                backgroundColor: '#A3E4DB',
               }}
             />   
           </View>  
@@ -171,15 +170,12 @@ const JournalEntry = ({navigation}) => {
           name: 'check',
           type: 'ionicons',
           size: 30,
-          color: 'white',
+          color: '#FFF8F3',
         }}
         loading={false}
-        loadingProps={{ size: 'small', color: 'white' }}
-        buttonStyle={{
-          backgroundColor: 'rgba(111, 202, 186, 1)',
-          borderRadius: 5,
-        }}
-        titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+        loadingProps={{size:'small',color:'white'}}
+        buttonStyle={{backgroundColor:'#4FD3C4',borderRadius:30}}
+        titleStyle={{fontWeight:'bold',fontSize:20}}
         containerStyle={{
           marginTop: -10,
           height: 80,
@@ -192,12 +188,23 @@ const JournalEntry = ({navigation}) => {
         transparent={true}
         visible={previewModal}
         onRequestClose={() => {
-          Alert.alert('Preview modal closed');
           setPreviewModal(!previewModal);
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <View style={{alignSelf:'flex-end'}}>
+              <TouchableOpacity
+                onPress={() => {
+                  setPreviewModal(!previewModal);
+                }} >
+                <Icon
+                  style={{margin:-5, padding:-10}}
+                  name='close'
+                  type='ionicons'
+                  size={30} />
+              </TouchableOpacity>
+            </View>
             <Text style={{fontWeight:'bold', fontSize:20}}>Your Journal Entry:</Text>
             <Text>{newJournalTitle}</Text>
             <Icon name={moodIcon} type='font-awesome-5' />
@@ -205,8 +212,10 @@ const JournalEntry = ({navigation}) => {
             <Button
               className='previewModalBtn'
               title='Submit'
+              loading={false}
+              loadingProps={{size:'small',color:'white'}}
               buttonStyle={{
-                backgroundColor: 'rgb(28, 109, 208)',
+                backgroundColor: '#A3E4DB',
                 borderRadius: 5,
               }}
               containerStyle={{
@@ -229,25 +238,21 @@ const JournalEntry = ({navigation}) => {
                 setNewJournalText('');
                 setNewJournalTitle('');
                 setMoodIcon('grin');
-                Alert.alert('Journal entry submitted');
-                
-                navigation.navigate('Submitted Entry', { journalData });
-                
+                Alert.alert('Journal entry submitted'); 
+                navigation.navigate('Submitted Entry', {journalData});
               }}
             />
           </View>
         </View>
       </Modal>
-      <View style={{marginBottom:50}}>
-        {/* {submittedEntries} */}
-      </View>
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16
+    padding: 16,
+    backgroundColor: '#C1F8CF'
   },
   text: {
     marginTop: 10, 
@@ -256,8 +261,12 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'center'
   },
-  icon: {
-    
+  title: {
+    marginLeft:10,
+    backgroundColor:'#FFF',
+    width:'100%',
+    height:40,
+    paddingHorizontal:10
   },
   textarea: {
     backgroundColor: '#FFF',
@@ -287,6 +296,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5
+  },
+  moodsContainer: {
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'space-around',
+    width:'100%',
+    paddingTop:20
   }
 });
 

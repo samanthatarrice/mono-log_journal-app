@@ -29,14 +29,16 @@ export default function App() {
             } else if (route.name === 'Submitted Entry') {
               iconName = 'options-outline'
             }
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return <Ionicons name={iconName} size={35} color={color} />;
           },
-          tabBarStyle: {height:70,paddingTop:10},
+          headerTitleAlign: 'center',
+          headerStyle: {backgroundColor:'#488FB1'},
+          headerTitleStyle: {color:'#FFF'},
           tabBarLabelStyle: {paddingBottom:10},
-          tabBarIconStyle: {},
-          tabBarActiveTintColor: 'gray',
-          tabBarInactiveTintColor: 'black',
-          headerTitleAlign: 'center'
+          tabBarStyle: {height:85,backgroundColor:'#3E4985'},
+          tabBarActiveTintColor: '#C1F8CF',
+          tabBarInactiveTintColor: '#FFF',
+          
         })}
       >
         <Tab.Screen name='Home' component={Home} />
