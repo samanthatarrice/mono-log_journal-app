@@ -71,12 +71,13 @@ const JournalEntry = ({navigation}) => {
         color: moodIcon.color
       },
       text: newJournalText,
-      image: ''
+      images: newJournalImage
     });
     setJournalData(journalData);
     navigation.navigate('My Journal', {journalData});
     setNewJournalText('');
     setNewJournalTitle('');
+    setNewJournalImage([]);
     setMoodIcon({name:'grin-alt',color:colors.mint});
     setPreviewModal(!previewModal);
     Alert.alert('Journal entry submitted'); 
@@ -204,7 +205,8 @@ const JournalEntry = ({navigation}) => {
               source={{ uri: image }} style={{ 
                 width: 360, 
                 height: 270,
-                marginVertical: 5 
+                marginBottom: 10,
+                alignSelf:'center'
               }}
               resizeMode='center' 
             />  
@@ -358,6 +360,19 @@ const JournalEntry = ({navigation}) => {
                 </View>
                 <Card.Divider />
                 <Text style={{fontFamily:fonts.SpaceItalic,fontSize:12}}>{newJournalText}</Text>
+                {newJournalImage && 
+                  newJournalImage.map(image => 
+                    <Image 
+                      source={{ uri: image }} style={{ 
+                        width: 250, 
+                        height: 185,
+                        marginBottom: 10,
+                        alignSelf:'center'
+                      }}
+                      resizeMode='center' 
+                    />
+                  )
+                }
               </Card>
             </ScrollView>
             <Button

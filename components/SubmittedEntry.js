@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Text, Pressable, StyleSheet, Alert } from 'react-native';
+import { View, ScrollView, Text, Pressable, Image, StyleSheet, Alert } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 
 const SubmittedEntry = (props) => {
@@ -36,6 +36,19 @@ const SubmittedEntry = (props) => {
         </View>
         <Card.Divider />
         <Text style={{fontFamily:fonts.SpaceItalic,fontSize:12,fontStyle:'normal',paddingHorizontal:5}}>{entry.text}</Text>
+        {entry.images &&
+          entry.images.map(image => 
+            <Image 
+              source={{ uri: image }} style={{ 
+                width: 325, 
+                height: 243.75,
+                alignSelf:'center',
+                marginTop:10
+              }}
+              resizeMode='cover' 
+            />
+          )
+        }
       </Card>
     </Pressable>
     
