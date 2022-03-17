@@ -62,7 +62,7 @@ function App() {
             tabBarLabelStyle: {paddingBottom:10},
             tabBarStyle: {height:80,backgroundColor:colors.midnightBlue},
             tabBarActiveTintColor: colors.mint,
-            tabBarLabelStyle:{fontFamily:fonts.SpaceMono,paddingBottom:7,letterSpacing:-0.2},
+            tabBarLabelStyle:{fontFamily:fonts.BioRhyme,paddingBottom:7},
             tabBarInactiveTintColor: '#FFF',
             
           })}

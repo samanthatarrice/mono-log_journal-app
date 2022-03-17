@@ -3,110 +3,89 @@ import { ScrollView, View, Text, TextInput, Alert, Modal, TouchableOpacity, Imag
 import { Icon, Button, Card } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
 
+
+// Set up Date:
+let dateObj = new Date();
+const weekdayArr = ["Sun","Mon","Tues","Weds","Thurs","Fri","Sat"];
+let weekday = weekdayArr[dateObj.getDay()]
+let month = dateObj.getMonth();
+let day = dateObj.getDate();
+let year = dateObj.getFullYear();
+let date = `${weekday}, ${month}/${day}/${year}`;
+
+
 const JournalEntry = ({navigation}) => {
 
-  let dateObj = new Date();
-  const weekdayArr = ["Sun","Mon","Tues","Weds","Thurs","Fri","Sat"];
-  let weekday = weekdayArr[dateObj.getDay()]
-  let month = dateObj.getMonth();
-  let day = dateObj.getDate();
-  let year = dateObj.getFullYear();
-
-  let date = `${weekday}, ${month}/${day}/${year}`;
-
-  const [journalData, setJournalData] = useState([]);
-  const [newJournalTitle, setNewJournalTitle] = useState('');
-  const [newJournalText, setNewJournalText] = useState('');
-  const [newJournalImage, setNewJournalImage] = useState([]);
-
-  const [moodModal, setMoodModal] = useState(false);
-  const [imageModal, setImageModal] = useState(false);
-  const [previewModal, setPreviewModal] = useState(false);
-
+  // Journal Data State:
+  const [newEntryData, setNewEntryData] = useState([]);
+  const [newEntryTitle, setNewEntryTitle] = useState('');
   const [moodIcon, setMoodIcon] = useState({
     name: 'grin-alt',
     color: colors.mint
   });
+  const [newEntryText, setNewEntryText] = useState('');
+  const [newEntryImage, setNewEntryImage] = useState([]);
+  
+  // Modal State:
+  const [moodModal, setMoodModal] = useState(false);
+  const [imageModal, setImageModal] = useState(false);
+  const [previewModal, setPreviewModal] = useState(false);
+
+  console.log(allEntries)
 
   function handleSubmitEntry() {
-
-    //THESE KIND OF WORK, but it is delayed by one entry, and only shows the entry on the next onPress:
-    //   setJournalData(prevJournalData => [...prevJournalData,
-    //     {
-    //       id: journalData.length,
-    //       date: date,
-    //       title: newJournalTitle,
-    //       mood: {
-    //         name: moodIcon.name,
-    //         color: moodIcon.color
-    //       },
-    //       text: newJournalText,
-    //       image: ''
-    //     }
-    //   ]
-    // )
-    //   setJournalData(prevJournalData => (
-    //   [...prevJournalData,
-    //     {
-    //       id: journalData.length,
-    //       date: date,
-    //       title: newJournalTitle,
-    //       mood: {
-    //         name: moodIcon.name,
-    //         color: moodIcon.color
-    //       },
-    //       text: newJournalText,
-    //       image: ''
-    //     }
-    //   ]
-    // ))
-
-    //THIS WORKS, but it mutates state:
-    journalData.push({
-      id: journalData.length,
+    
+    // THIS WORKS, but it mutates state:
+    allEntries = newEntryData.concat({
+      id: newEntryData.length,
       date: date,
-      title: newJournalTitle,
+      title: newEntryTitle,
       mood: {
         name: moodIcon.name,
         color: moodIcon.color
       },
-      text: newJournalText,
-      images: newJournalImage
+      text: newEntryText,
+      images: newEntryImage
     });
-    setJournalData(journalData);
-    navigation.navigate('My Journal', {journalData});
-    setNewJournalText('');
-    setNewJournalTitle('');
-    setNewJournalImage([]);
+
+    setNewEntryData(allEntries)
+    navigation.navigate('My Journal', {allEntries, setNewEntryData});
+
+    setNewEntryTitle('');
     setMoodIcon({name:'grin-alt',color:colors.mint});
+    setNewEntryText('');
+    setNewEntryImage([]);
+
     setPreviewModal(!previewModal);
     Alert.alert('Journal entry submitted'); 
-
   }
 
-
+  console.log(newEntryData)
 
   const pickGalleryImage = async () => {
     setImageModal(!imageModal);
 
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    // const [galleryPermission, setGalleryPermission] = ImagePicker.useMediaLibraryPermissions();
 
-    console.log(result);
+    // if (galleryPermission) {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
 
-    if (!result.cancelled) {
-      setNewJournalImage(prevJournalImages => [...prevJournalImages, result.uri]);
-    }
-  };
+      console.log(result);
+
+      if (!result.cancelled) {
+        setNewEntryImage(prevJournalImages => [...prevJournalImages, result.uri]);
+      }
+    // };
+  }
 
   console.log('rendered')
 
   return (
-    // <ScrollView style={[styles.container, moodModal | imageModal | previewModal ? {backgroundColor:'rgba(0,0,0,0.25)'} : '']}>
     <ScrollView style={styles.container}>
       <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
         <View>
@@ -176,20 +155,18 @@ const JournalEntry = ({navigation}) => {
         <Text style={[{fontFamily:fonts.SpaceMono,color:colors.midnightBlue}]}>Title:</Text>
         <TextInput
           style={styles.title}
-          onChangeText={newJournalTitle => setNewJournalTitle(newJournalTitle)}
-          defaultValue={newJournalTitle}
-          value={newJournalTitle}
-          autoCapitalize='words'
-          placeholder='Your title here!'
-          multiline={true}
+          onChangeText={title => setNewEntryTitle(title)}
+          defaultValue={newEntryTitle}
+          value={newEntryTitle}
+          placeholder='Your Title'
         />
       </View>
       <View style={{margin:10}}>
         <TextInput 
           style={styles.textarea}
-          onChangeText={newJournalText => setNewJournalText(newJournalText)} 
-          defaultValue={newJournalText}
-          value={newJournalText}
+          onChangeText={text => setNewEntryText(text)}
+          defaultValue={newEntryText}
+          value={newEntryText}
           multiline
           numberOfLines={10}
           allowFontScaling
@@ -199,8 +176,8 @@ const JournalEntry = ({navigation}) => {
         /> 
       </View>
       <View style={{marginBottom:5}}>
-        {newJournalImage && 
-          newJournalImage.map(image => 
+        {newEntryImage && 
+          newEntryImage.map(image => 
             <Image 
               source={{ uri: image }} style={{ 
                 width: 360, 
@@ -208,7 +185,7 @@ const JournalEntry = ({navigation}) => {
                 marginBottom: 10,
                 alignSelf:'center'
               }}
-              resizeMode='center' 
+              resizeMode='cover' 
             />  
           )
         }
@@ -273,39 +250,6 @@ const JournalEntry = ({navigation}) => {
                 onPress={pickGalleryImage}
               />
             </View>
-            {/* <ButtonGroup
-              buttons={[
-                <Icon
-                  name='camera'
-                  type='feather'
-                  size={100}
-                  color='white'
-                />,
-                <Icon
-                  name='image'
-                  type='feather'
-                  size={100}
-                  color='white'
-                />
-              ]}
-              selectedIndex={imageType}
-              onPress={(value) => {
-                value === 0 ? console.log('val 0 selected') : console.log('val 0 not selected');
-                setImageType(value);
-              }}
-              containerStyle={{
-                height: 120,
-                marginBottom: 25,
-                width: 270
-              }}
-              buttonStyle={{
-                backgroundColor:'lightgray',
-                
-              }}
-              selectedButtonStyle={{
-                backgroundColor: '#A3E4DB',
-              }}
-            />    */}
           </View>  
         </View>
       </Modal>
@@ -353,23 +297,23 @@ const JournalEntry = ({navigation}) => {
             <Text style={{fontFamily:fonts.Anton,color:colors.cobaltBlue,fontSize:20,letterSpacing:1,marginBottom:10}}>Your Journal Entry:</Text>
             <ScrollView style={{width:'100%'}} >
               <Card>
-                <Card.Title style={{fontWeight:'normal',fontFamily:fonts.BioRhyme,fontSize:18,marginBottom:10}}>{newJournalTitle}</Card.Title>
+                <Card.Title style={{fontWeight:'normal',fontFamily:fonts.BioRhyme,fontSize:18,marginBottom:10}}>{newEntryTitle}</Card.Title>
                 <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingBottom:5}}>
                   <Text style={{textAlign:'center',fontSize:10,fontFamily:fonts.SpaceMono}}>{date}</Text>
                   <Icon size={35} name={moodIcon.name} color={moodIcon.color} type='font-awesome-5' />
                 </View>
                 <Card.Divider />
-                <Text style={{fontFamily:fonts.SpaceItalic,fontSize:12}}>{newJournalText}</Text>
-                {newJournalImage && 
-                  newJournalImage.map(image => 
+                <Text style={{fontFamily:fonts.SpaceItalic,fontSize:12}}>{newEntryText}</Text>
+                {newEntryImage && 
+                  newEntryImage.map(image => 
                     <Image 
                       source={{ uri: image }} style={{ 
-                        width: 250, 
-                        height: 185,
-                        marginBottom: 10,
+                        width: 260, 
+                        height: 195,
+                        marginVertical: 10,
                         alignSelf:'center'
                       }}
-                      resizeMode='center' 
+                      resizeMode='cover' 
                     />
                   )
                 }
@@ -485,3 +429,34 @@ const styles = StyleSheet.create({
 });
 
 export default JournalEntry;
+
+//From handleSubmit function. THESE KIND OF WORK, but it is delayed by one entry, and only shows the entry on the next onPress:
+    //   setJournalData(prevJournalData => [...prevJournalData,
+    //     {
+    //       id: journalData.length,
+    //       date: date,
+    //       title: newEntryTitle,
+    //       mood: {
+    //         name: moodIcon.name,
+    //         color: moodIcon.color
+    //       },
+    //       text: newEntryText,
+    //       image: ''
+    //     }
+    //   ]
+    // )
+    //   setJournalData(prevJournalData => (
+    //   [...prevJournalData,
+    //     {
+    //       id: journalData.length,
+    //       date: date,
+    //       title: newEntryTitle,
+    //       mood: {
+    //         name: moodIcon.name,
+    //         color: moodIcon.color
+    //       },
+    //       text: newEntryText,
+    //       image: ''
+    //     }
+    //   ]
+    // ))
