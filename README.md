@@ -39,7 +39,7 @@
 Independently developed and designed for my final Front Stack bootcamp project. I came up with this idea I was trying to find a good journaling app before starting to learn how to code to document my journey. None of them really appealed to me, so I decided to create my own! I also thought it would be a great way to solidify what I have been learning with React and Redux during my bootcamp.
 
 Wireframes created with Figma:
-<img src="components/images/mono-log-wireframe.png" alt="wireframe">
+<img src="components/images/mono-log-wireframe.png" alt="wireframe" width="400" align="center">
 
 
 Use of tabbed navigation with stateful components to allow users create new journal entries, add images, choose their mood, and submit their entry to another screen as props
