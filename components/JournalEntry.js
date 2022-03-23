@@ -3,16 +3,14 @@ import { ScrollView, View, Text, TextInput, Alert, Modal, TouchableOpacity, Imag
 import { Icon, Button, Card } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
 
-
 // Set up Date:
-let dateObj = new Date();
+const dateObj = new Date();
 const weekdayArr = ["Sun","Mon","Tues","Weds","Thurs","Fri","Sat"];
-let weekday = weekdayArr[dateObj.getDay()]
-let month = dateObj.getMonth();
-let day = dateObj.getDate();
-let year = dateObj.getFullYear();
-let date = `${weekday}, ${month}/${day}/${year}`;
-
+const weekday = weekdayArr[dateObj.getDay()];
+const month = dateObj.getMonth();
+const day = dateObj.getDate();
+const year = dateObj.getFullYear();
+const date = `${weekday}, ${month}/${day}/${year}`;
 
 const JournalEntry = ({navigation}) => {
 
@@ -31,12 +29,11 @@ const JournalEntry = ({navigation}) => {
   const [imageModal, setImageModal] = useState(false);
   const [previewModal, setPreviewModal] = useState(false);
 
-  console.log(allEntries)
-
+ 
   function handleSubmitEntry() {
     
     // THIS WORKS, but it mutates state:
-    allEntries = newEntryData.concat({
+    let allEntries = newEntryData.concat({
       id: newEntryData.length,
       date: date,
       title: newEntryTitle,
@@ -49,7 +46,7 @@ const JournalEntry = ({navigation}) => {
     });
 
     setNewEntryData(allEntries)
-    navigation.navigate('My Journal', {allEntries, setNewEntryData});
+    navigation.navigate('My Journal', {allEntries});
 
     setNewEntryTitle('');
     setMoodIcon({name:'grin-alt',color:colors.mint});
@@ -60,8 +57,7 @@ const JournalEntry = ({navigation}) => {
     Alert.alert('Journal entry submitted'); 
   }
 
-  console.log(newEntryData)
-
+  // ImagePicker from https://docs.expo.dev/versions/latest/sdk/imagepicker/
   const pickGalleryImage = async () => {
     setImageModal(!imageModal);
 
@@ -75,12 +71,29 @@ const JournalEntry = ({navigation}) => {
         quality: 1,
       });
 
-      console.log(result);
+      if (!result.cancelled) {
+        setNewEntryImage(prevJournalImages => [...prevJournalImages, result.uri]);
+        console.log(newEntryImage)
+      }
+
+  }
+
+  const pickCameraImage = async () => {
+    setImageModal(!imageModal);
+
+    // if (galleryPermission) {
+      let result = await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
 
       if (!result.cancelled) {
         setNewEntryImage(prevJournalImages => [...prevJournalImages, result.uri]);
+        console.log(newEntryImage)
       }
-    // };
+
   }
 
   console.log('rendered')
@@ -119,7 +132,6 @@ const JournalEntry = ({navigation}) => {
                 onPress={() => {
                   setMoodModal(!moodModal);
                   moodIcon.name !== 'grin-alt' ? setMoodIcon({name:'grin-alt',color:colors.mint}) : moodIcon.name;
-                  console.log(moodIcon) 
                 }} >
                 <Icon
                   style={{margin:-5, padding:-10}}
@@ -159,6 +171,7 @@ const JournalEntry = ({navigation}) => {
           defaultValue={newEntryTitle}
           value={newEntryTitle}
           placeholder='Your Title'
+          autoCapitalize='words'
         />
       </View>
       <View style={{margin:10}}>
@@ -179,7 +192,9 @@ const JournalEntry = ({navigation}) => {
         {newEntryImage && 
           newEntryImage.map(image => 
             <Image 
-              source={{ uri: image }} style={{ 
+              key={image}
+              source={{ uri: image }}
+              style={{ 
                 width: 360, 
                 height: 270,
                 marginBottom: 10,
@@ -205,7 +220,7 @@ const JournalEntry = ({navigation}) => {
         titleStyle={{fontSize:18,fontFamily:fonts.Anton,letterSpacing:1.5}}
         containerStyle={{
           height: 80,
-          width: '100%',
+          width: '100%'
         }}
         onPress={() => setImageModal(true)}
       />
@@ -225,14 +240,32 @@ const JournalEntry = ({navigation}) => {
                   setImageModal(!imageModal);
                 }} >
                 <Icon
-                  style={{margin:-5, padding:-10}}
+                  style={{margin:-5,padding:-10}}
                   name='close'
                   type='ionicons'
                   size={30}
                 />
               </TouchableOpacity>
             </View>
-            <View style={{marginBottom:12}}>
+            <View style={{margin:15,paddingBottom:10,display:'flex',flexDirection:'row',width:'85%',justifyContent:'space-between'}}>
+              <Button
+                icon={{
+                  name:'camera',
+                  type:'feather',
+                  size:100,
+                  color:'white'
+                }}
+                containerStyle={{
+                  height: 130,
+                  width: 130,
+                  
+                }}
+                buttonStyle={{
+                  backgroundColor:colors.turquoise
+                }}
+                onPress={pickCameraImage}
+                style={{paddingLeft: 10}}
+              />
               <Button
                 icon={{
                   name:'image',
@@ -306,8 +339,10 @@ const JournalEntry = ({navigation}) => {
                 <Text style={{fontFamily:fonts.SpaceItalic,fontSize:12}}>{newEntryText}</Text>
                 {newEntryImage && 
                   newEntryImage.map(image => 
-                    <Image 
-                      source={{ uri: image }} style={{ 
+                    <Image
+                      key={image}
+                      source={{ uri: image }} 
+                      style={{ 
                         width: 260, 
                         height: 195,
                         marginVertical: 10,

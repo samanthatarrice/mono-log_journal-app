@@ -3,8 +3,7 @@ import { View, ScrollView, Text, Pressable, Image, StyleSheet, Alert } from 'rea
 import { Card, Icon } from 'react-native-elements';
 
 const SubmittedEntry = (props) => {
-  
-  // props.route.params.allEntries === undefined ? <View /> : submittedEntries;
+
   const {allEntries} = props.route.params;
   const submittedEntries = allEntries.map(entry => 
     <View key={entry.id}>
@@ -21,8 +20,6 @@ const SubmittedEntry = (props) => {
               text: 'OK',
               onPress: () => {
                 console.log('Delete this entry:' + JSON.stringify(entry));
-                
-                
                 allEntries.splice(entry.id, 1) 
                 //not working...
               }
@@ -33,7 +30,7 @@ const SubmittedEntry = (props) => {
           }
         )
         }>
-        <Card>
+        <Card key={entry.id}>
           <Card.Title style={{fontWeight:'normal',fontFamily:fonts.BioRhyme,fontSize:18,marginBottom:10}}>{entry.title}</Card.Title>
           <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:5, paddingBottom:5}}>
             <Text style={{textAlign:'center',fontSize:10,fontFamily:fonts.SpaceMono}}>{entry.date}</Text>
@@ -43,7 +40,8 @@ const SubmittedEntry = (props) => {
           <Text style={{fontFamily:fonts.SpaceItalic,fontSize:12,fontStyle:'normal',paddingHorizontal:5}}>{entry.text}</Text>
           {entry.images &&
             entry.images.map(image => 
-              <Image 
+              <Image
+                key={image}
                 source={{ uri: image }} style={{ 
                   width: 325, 
                   height: 243.75,
@@ -58,14 +56,12 @@ const SubmittedEntry = (props) => {
       </Pressable>
     </View>
   );
+  return (
     
-    
-    return (
-      
-        <ScrollView style={styles.container}>
-          {submittedEntries}
-        </ScrollView>
-      );
+      <ScrollView style={styles.container}>
+        {submittedEntries}
+      </ScrollView>
+    );
   
 }
 

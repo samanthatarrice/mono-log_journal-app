@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet } from 'react-native-web';
+import styles from './styles';
 import { NavigationContainer } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 import {useFonts as useBioRhyme, BioRhyme_400Regular} from '@expo-google-fonts/biorhyme';
 import {useFonts as useSpaceMono, SpaceMono_400Regular, SpaceMono_400Regular_Italic} from '@expo-google-fonts/space-mono';
 import {useFonts as useBigShoulders, BigShouldersDisplay_700Bold} from '@expo-google-fonts/big-shoulders-display';
@@ -15,8 +15,9 @@ import CalendarComponent from './components/Calendar';
 import SubmittedEntry from './components/SubmittedEntry';
 
 const Tab = createBottomTabNavigator();
-  
-function App() {
+
+function App(props) {
+
   let [antonLoaded] = useAnton({
     Anton_400Regular,
   });
@@ -40,9 +41,21 @@ function App() {
     return (
       <NavigationContainer>
         <Tab.Navigator
+          // Trying this to see how I can manipulate the e.data, but emulator not working
+          // screenListeners={({ navigation }) => ({
+          //   state: (e) => {
+          //     // Do something with the state
+          //     console.log('state changed', e.data);
+        
+          //     // Do something with the `navigation` object
+          //     if (!navigation.canGoBack()) {
+          //       console.log("we're on the initial screen");
+          //     }
+          //   },
+          // })}
           screenOptions={
             ({route}) => ({
-            tabBarIcon: ({ color, size }) => {
+            tabBarIcon: ({ color }) => {
               let iconName;
 
               if (route.name === 'Home') {
@@ -50,7 +63,7 @@ function App() {
               } else if (route.name === 'New Entry') {
                 iconName = 'add-circle';
               } else if (route.name === 'My Journal') {
-                iconName = 'journal';
+                iconName = 'journal'
               } else if (route.name === 'Calendar') {
                 iconName = 'calendar-outline'
               }
@@ -61,15 +74,25 @@ function App() {
             headerTitleStyle: {color:'#FFF',fontFamily:fonts.Anton,fontSize:24,letterSpacing:1,textTransform:'uppercase'},
             tabBarLabelStyle: {paddingBottom:10},
             tabBarStyle: {height:80,backgroundColor:colors.midnightBlue},
-            tabBarActiveTintColor: colors.mint,
+            tabBarActiveTintColor:colors.mint,
             tabBarLabelStyle:{fontFamily:fonts.BioRhyme,paddingBottom:7},
             tabBarInactiveTintColor: '#FFF',
-            
           })}
         >
           <Tab.Screen name='Home' component={Home} />
           <Tab.Screen name='New Entry' component={JournalEntry} />
-          <Tab.Screen name='My Journal' component={SubmittedEntry}/>
+          {/* This works, but it doesn't allow user to go to tab if allEntries does have data. Instead, it makes the button disabled permentently: */}
+          <Tab.Screen name='My Journal' component={SubmittedEntry} params={props.allEntries} listeners={({ navigation, route }) => ({
+              tabPress: (e) => {
+                props.allEntries ?
+                // If allEntries is truthy, then navigate to my Journal:
+                navigation.navigate('My Journal', props.allEntries) :
+                // Else, prevent the default action, and disable the button:
+                e.preventDefault() 
+              },
+            })
+          }
+          />
           <Tab.Screen name='Calendar' component={CalendarComponent} />
         </Tab.Navigator>
       </NavigationContainer>
@@ -77,15 +100,6 @@ function App() {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  tabContainer: {
-    height: 100
-  },
-  // icons: {
-  //   marginTop: 16
-  // }
-});
 
 const fonts = {
   Anton: 'Anton_400Regular',
