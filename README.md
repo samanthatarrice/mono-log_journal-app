@@ -47,7 +47,12 @@ Wireframes created with <a href="https://www.figma.com/file/pT9nCSXN8yiGcOnTK9P0
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+  <div align="center">
+    <img src="https://cdn-icons.flaticon.com/png/512/1183/premium/1183723.png?token=exp=1648158557~hmac=9ba19ff8b84b9c42e37f7b34e4813df4" width=70 height="70" alt="React icon">
+    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968704.png" width="70" height="70" alt="Figma icon">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111288.png" width="70" height="70" alt="Git logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" width="70" height="70" alt="Github logo">
+  </div>
 
 * [React-Native](https://reactnative.dev/)
 * [Expo](https://docs.expo.dev/)
