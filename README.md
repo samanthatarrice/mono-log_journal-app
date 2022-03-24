@@ -50,8 +50,8 @@ Wireframes created with <a href="https://www.figma.com/file/pT9nCSXN8yiGcOnTK9P0
   <div align="center">
     <img src="https://cdn-icons.flaticon.com/png/512/1183/premium/1183723.png?token=exp=1648158557~hmac=9ba19ff8b84b9c42e37f7b34e4813df4" width=70 height="70" alt="React icon">
     <img src="https://cdn-icons-png.flaticon.com/512/5968/5968704.png" width="70" height="70" alt="Figma icon">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111288.png" width="70" height="70" alt="Git logo">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" width="70" height="70" alt="Github logo">
+    <img src="https://cdn-icons.flaticon.com/png/512/1240/premium/1240970.png?token=exp=1648158823~hmac=41b5d561aea04cdf2f74b6e66c4b888a" width="70" height="70" alt="Git logo">
+    <img src="https://cdn-icons.flaticon.com/png/512/3128/premium/3128308.png?token=exp=1648158881~hmac=c0ff44bf2e92b8e4b4dd87e04efe31af" width="70" height="70" alt="Github logo">
   </div>
 
 * [React-Native](https://reactnative.dev/)
@@ -126,6 +126,17 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* [React To Do List](https://www.youtube.com/watch?v=0kL6nhutjQ8&list=PLYBvEAka-q1hJuwRPYQPlEBBRm7_qGw_2)
+* [Learn React for Free on Scrimba](https://scrimba.com/learn/learnreact)
+* [Img Shields](https://shields.io)
+* [GitHub Pages](https://pages.github.com)
+* [Best Readme Template](https://github.com/othneildrew/Best-README-Template)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 <!-- CONTACT -->
 ## Contact
 
@@ -135,17 +146,18 @@ Project Link: [https://github.com/your_username/mono_log-journal-app](https://gi
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* [React To Do List](https://www.youtube.com/watch?v=0kL6nhutjQ8&list=PLYBvEAka-q1hJuwRPYQPlEBBRm7_qGw_2)
-* [Learn React for Free on Scrimba](https://scrimba.com/learn/learnreact)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/starrice/
 
