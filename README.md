@@ -28,21 +28,20 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Independently developed and designed for my final Front Stack bootcamp project. I came up with this idea I was trying to find a good journaling app before starting to learn how to code to document my journey. None of them really appealed to me, so I decided to create my own! I also thought it would be a great way to solidify what I have been learning with React and Redux during my bootcamp.
+Independently developed and designed for my final Front Stack bootcamp project. I came up with this idea I was trying to find a good journaling app before starting to learn how to code to document my journey. None of them really appealed to me, so I decided to create my own! I also thought it would be a great way to solidify what I have been learning with React and Redux during my bootcamp, especially with managing state, effects, and API requests.
 
-Wireframes created with <a href="https://www.figma.com/file/pT9nCSXN8yiGcOnTK9P0uy/Journal?node-id=0%3A1">Figma</a>:
-<a href="https://www.figma.com/file/pT9nCSXN8yiGcOnTK9P0uy/Journal?node-id=0%3A1"><img src="components/images/mono-log-wireframe.png" alt="wireframe"></a>
-
-[Video of app]
-
+<div align="center">
+  <p>Wireframes created with <a href="https://www.figma.com/file/pT9nCSXN8yiGcOnTK9P0uy/Journal?node-id=0%3A1">Figma</a></p>
+  <a href="https://www.figma.com/file/pT9nCSXN8yiGcOnTK9P0uy/Journal?node-id=0%3A1"><img src="components/images/mono-log-wireframe.png" alt="wireframe" width="400"></a>
+</div>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
@@ -94,16 +93,12 @@ Once you have either the emulator or Expo Go installed, you can run it on your l
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+[Honors Video Here]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- ROADMAP -->
@@ -121,8 +116,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Refactor
     - [ ] External CSS stylesheet
     - [ ] Test on IOS
-
-- [ ] User login
+- [ ] User login (backend)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -140,7 +134,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/your_username/mono_log-journal-app](https://github.com/your_username/repo_name)
+Made with 💚 by Samantha Tarrice, March 2022
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -150,4 +144,3 @@ Project Link: [https://github.com/your_username/mono_log-journal-app](https://gi
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/starrice/
-
