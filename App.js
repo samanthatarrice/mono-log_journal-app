@@ -82,7 +82,7 @@ function App(props) {
           <Tab.Screen name='Home' component={Home} />
           <Tab.Screen name='New Entry' component={JournalEntry} />
           {/* This works, but it doesn't allow user to go to tab if allEntries does have data. Instead, it makes the button disabled permentently: */}
-          <Tab.Screen name='My Journal' component={SubmittedEntry} params={props.allEntries} listeners={({ navigation, route }) => ({
+          {/* <Tab.Screen name='My Journal' component={SubmittedEntry} params={props.allEntries} listeners={({ navigation, route }) => ({
               tabPress: (e) => {
                 props.allEntries ?
                 // If allEntries is truthy, then navigate to my Journal:
@@ -91,8 +91,8 @@ function App(props) {
                 e.preventDefault() 
               },
             })
-          }
-          />
+          } */}
+          <Tab.Screen name='My Journal' component={SubmittedEntry} />
           <Tab.Screen name='Calendar' component={CalendarComponent} />
         </Tab.Navigator>
       </NavigationContainer>

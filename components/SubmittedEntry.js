@@ -3,9 +3,14 @@ import { View, ScrollView, Text, Pressable, Image, StyleSheet, Alert } from 'rea
 import { Card, Icon } from 'react-native-elements';
 
 const SubmittedEntry = (props) => {
+  console.log(props)
+  console.log('**')
+  // if (props.children === undefined) {
+  //   return <View></View>
+  // } 
 
-  const {allEntries} = props.route.params;
-  const submittedEntries = allEntries.map(entry => 
+  const {newEntryData} = props.route.params;
+  const submittedEntries = newEntryData.map(entry => 
     <View key={entry.id}>
       <Pressable 
         onLongPress={() => Alert.alert(
@@ -57,12 +62,10 @@ const SubmittedEntry = (props) => {
     </View>
   );
   return (
-    
       <ScrollView style={styles.container}>
         {submittedEntries}
       </ScrollView>
     );
-  
 }
 
 const fonts = {

@@ -32,8 +32,8 @@ const JournalEntry = ({navigation}) => {
  
   function handleSubmitEntry() {
     
-    // THIS WORKS, but it mutates state:
-    let allEntries = newEntryData.concat({
+    // THIS WORKS, but I think it mutates state:
+    let allEntries = newEntryData.push({
       id: newEntryData.length,
       date: date,
       title: newEntryTitle,
@@ -46,7 +46,7 @@ const JournalEntry = ({navigation}) => {
     });
 
     setNewEntryData(allEntries)
-    navigation.navigate('My Journal', {allEntries});
+    navigation.navigate('My Journal', {newEntryData});
 
     setNewEntryTitle('');
     setMoodIcon({name:'grin-alt',color:colors.mint});
