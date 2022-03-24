@@ -15,7 +15,9 @@ const date = `${weekday}, ${month}/${day}/${year}`;
 const JournalEntry = ({navigation}) => {
 
   // Journal Data State:
-  const [newEntryData, setNewEntryData] = useState([]);
+  const [newEntryData, setNewEntryData] = useState([
+    
+  ]);
   const [newEntryTitle, setNewEntryTitle] = useState('');
   const [moodIcon, setMoodIcon] = useState({
     name: 'grin-alt',

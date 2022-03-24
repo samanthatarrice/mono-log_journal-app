@@ -41,11 +41,9 @@ Independently developed and designed for my final Front Stack bootcamp project. 
 Wireframes created with <a href="https://www.figma.com/file/pT9nCSXN8yiGcOnTK9P0uy/Journal?node-id=0%3A1">Figma</a>:
 <img src="components/images/mono-log-wireframe.png" alt="wireframe">
 
-Use of tabbed navigation with stateful components to allow users create new journal entries, add images, choose their mood, and submit their entry to another screen as props
+[Video of app]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 ### Built With
 
@@ -55,17 +53,19 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * [Expo](https://docs.expo.dev/)
 * [React-Native-Elements](https://reactnativeelements.com/)
 * [React-Navigation](https://reactnavigation.org/)
-* [React-Native-Calender
+* [React-Native-Calender](https://github.com/wix/react-native-calendars)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running after you have cloned this repo, you can either run it on an EMULATOR or through the EXPO GO APP:
+
+💻 EMULATOR: if you don't have Android Studio already installed, follow the directions <a href="https://developer.android.com/studio/install#:~:text=Launch%20the%20Android%20Studio%20DMG,Studio%20settings%2C%20then%20click%20OK.">here</a>
+*System requirments: check the bottom of this <a href="https://developer.android.com/studio/install#:~:text=Launch%20the%20Android%20Studio%20DMG,Studio%20settings%2C%20then%20click%20OK.">page</a>.
+
+EXPO GO: Download on your iPhone or Android.
 
 ### Prerequisites
 
