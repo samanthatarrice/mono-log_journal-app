@@ -3,13 +3,32 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
 const Home = () => {
 
+  console.log('home rendered')
   const [randomQuote, setRandomQuote] = useState([]);
 
+
   useEffect(() => {
-    fetch('https://zenquotes.io/api/random')
-      .then(res => res.json())
-      .then(data => setRandomQuote(data[0]))
+    async function getRandomQuote() {
+      try {
+        const res = await fetch('https://zenquotes.io/api/random');
+        const data = await res.json();
+        setRandomQuote(data[0]);
+      } catch (error) {
+        setRandomQuote({...randomQuote,q:'Network Error', a:'Zen Quotes'})
+        console.log('ERROR:', error)
+      }
+    }
+  getRandomQuote()
+  
   }, [])
+
+  // useEffect(() => {
+
+  //   fetch('https://zenquotes.io/api/random')
+  //     .then(res => res.json())
+  //     .then(data => setRandomQuote(data[0]))
+  //     .catch(e => console.log('Error:', e))
+  // }, [])
 
   return (
     <View style={styles.container}>

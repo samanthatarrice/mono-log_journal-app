@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, ScrollView, Text, Pressable, Image, StyleSheet, Alert } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 
 const SubmittedEntry = (props) => {
-  console.log(props)
-  console.log('**')
-  // if (props.children === undefined) {
-  //   return <View></View>
-  // } 
+  // console.log(`Props: ${props}`)
 
-  const {newEntryData} = props.route.params;
-  const submittedEntries = newEntryData.map(entry => 
+  // Finally got this to work! Before I was trying to check if allEntries.route.params was undefined, but since this variable is only initialzed when the event happens, it wasn't even reading that variable. Of course, it had to look at the props for it to evaluate this!
+  if (props.route.params === undefined) {
+    return (
+      <View style={{backgroundColor:'#C1F8CF',display:'flex',alignItems:'center',height:'100%',justifyContent:'center',padding:25}}>
+        <Text style={{textAlign:'center',marginBottom:20,fontFamily:fonts.SpaceItalic,fontSize:12}}>You haven't created any entries yet.</Text>
+        <Text style={{fontFamily:fonts.SpaceMono,textAlign:'center'}}>To create an entry, go to the + New Entry tab.</Text>
+      </View>
+    )
+  } 
+  const {allEntries} = props.route.params;
+  const [remainingEntries, setRemainingEntries] = useState();
+  console.log( `Remaining Entries: ${JSON.stringify(remainingEntries)}`)
+  useEffect(() => {
+    setRemainingEntries(allEntries)
+  }, [allEntries])
+
+  const submittedEntries = allEntries.map(entry => 
     <View key={entry.id}>
       <Pressable 
         onLongPress={() => Alert.alert(
@@ -24,9 +35,10 @@ const SubmittedEntry = (props) => {
             {
               text: 'OK',
               onPress: () => {
-                console.log('Delete this entry:' + JSON.stringify(entry));
-                allEntries.splice(entry.id, 1) 
-                //not working...
+                console.log(`Entry to delete: ${JSON.stringify(entry)}`)
+                const afterDelete = allEntries.splice(entry.length, 1)
+                setRemainingEntries(afterDelete);
+                console.log(`Remaining Entries after delete: ${JSON.stringify(remainingEntries, null, 2)}`)
               }
             }
           ],
@@ -78,7 +90,7 @@ const fonts = {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:'#C1F8CF'
+    backgroundColor:'#C1F8CF',
   }
 })
 

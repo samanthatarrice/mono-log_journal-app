@@ -41,18 +41,6 @@ function App(props) {
     return (
       <NavigationContainer>
         <Tab.Navigator
-          // Trying this to see how I can manipulate the e.data, but emulator not working
-          // screenListeners={({ navigation }) => ({
-          //   state: (e) => {
-          //     // Do something with the state
-          //     console.log('state changed', e.data);
-        
-          //     // Do something with the `navigation` object
-          //     if (!navigation.canGoBack()) {
-          //       console.log("we're on the initial screen");
-          //     }
-          //   },
-          // })}
           screenOptions={
             ({route}) => ({
             tabBarIcon: ({ color }) => {
@@ -81,17 +69,6 @@ function App(props) {
         >
           <Tab.Screen name='Home' component={Home} />
           <Tab.Screen name='New Entry' component={JournalEntry} />
-          {/* This works, but it doesn't allow user to go to tab if allEntries does have data. Instead, it makes the button disabled permentently: */}
-          {/* <Tab.Screen name='My Journal' component={SubmittedEntry} params={props.allEntries} listeners={({ navigation, route }) => ({
-              tabPress: (e) => {
-                props.allEntries ?
-                // If allEntries is truthy, then navigate to my Journal:
-                navigation.navigate('My Journal', props.allEntries) :
-                // Else, prevent the default action, and disable the button:
-                e.preventDefault() 
-              },
-            })
-          } */}
           <Tab.Screen name='My Journal' component={SubmittedEntry} />
           <Tab.Screen name='Calendar' component={CalendarComponent} />
         </Tab.Navigator>

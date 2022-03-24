@@ -17,7 +17,7 @@ const CalendarComponent = () => {
       onPressArrowLeft={subtractMonth => subtractMonth()}
       onPressArrowRight={addMonth => addMonth()}
       theme={{
-        monthTextColor: 'blue'
+        monthTextColor:colors.cobaltBlue
       }}
     />
   )
@@ -33,3 +33,11 @@ const styles = StyleSheet.create({
   }
 })
 
+const colors = {
+  pink: '#FF449F',
+  yellow: '#FFD32D',
+  mint: '#C1F8CF',
+  turquoise: '#4FD3C4',
+  midnightBlue: '#3E4985',
+  cobaltBlue: '#488FB1',
+}

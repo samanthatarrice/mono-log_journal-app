@@ -15,9 +15,7 @@ const date = `${weekday}, ${month}/${day}/${year}`;
 const JournalEntry = ({navigation}) => {
 
   // Journal Data State:
-  const [newEntryData, setNewEntryData] = useState([
-    
-  ]);
+  const [newEntryData, setNewEntryData] = useState([]);
   const [newEntryTitle, setNewEntryTitle] = useState('');
   const [moodIcon, setMoodIcon] = useState({
     name: 'grin-alt',
@@ -34,9 +32,8 @@ const JournalEntry = ({navigation}) => {
  
   function handleSubmitEntry() {
     
-    // THIS WORKS, but I think it mutates state:
-    let allEntries = newEntryData.push({
-      id: newEntryData.length,
+    let allEntries = newEntryData.concat({
+      id: newEntryData,
       date: date,
       title: newEntryTitle,
       mood: {
@@ -48,7 +45,7 @@ const JournalEntry = ({navigation}) => {
     });
 
     setNewEntryData(allEntries)
-    navigation.navigate('My Journal', {newEntryData});
+    navigation.navigate('My Journal', {allEntries});
 
     setNewEntryTitle('');
     setMoodIcon({name:'grin-alt',color:colors.mint});

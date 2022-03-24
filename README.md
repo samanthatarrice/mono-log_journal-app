@@ -134,6 +134,8 @@ Project Link: [https://github.com/your_username/mono_log-journal-app](https://gi
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
+* [React To Do List](https://www.youtube.com/watch?v=0kL6nhutjQ8&list=PLYBvEAka-q1hJuwRPYQPlEBBRm7_qGw_2)
+* [Learn React for Free on Scrimba](https://scrimba.com/learn/learnreact)
 * [Img Shields](https://shields.io)
 * [GitHub Pages](https://pages.github.com)
 
