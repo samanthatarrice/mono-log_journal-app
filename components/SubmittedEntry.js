@@ -19,9 +19,14 @@ const SubmittedEntry = (props) => {
     )
   } 
 
-  console.log('ALL ENTRIES:', JSON.stringify(props.route.params.allEntries))
+  const {allEntries} = props.route.params
+  const [savedEntries, setSavedEntries] = useState([allEntries])
 
-  const submittedEntries = props.route.params.allEntries?.map(entry => 
+  useEffect(() => {
+    setSavedEntries(allEntries)
+  },[allEntries])
+
+  const submittedEntries = allEntries?.map(entry => 
     <View key={entry.id}>
       <Pressable 
         onLongPress={() => Alert.alert(
