@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './styles';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,7 +15,7 @@ import SubmittedEntry from './components/SubmittedEntry';
 
 const Tab = createBottomTabNavigator();
 
-function App(props) {
+function App() {
 
   let [antonLoaded] = useAnton({
     Anton_400Regular,

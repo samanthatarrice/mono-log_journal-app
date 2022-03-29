@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,  useEffect } from 'react';
 import { ScrollView, View, Text, TextInput, Alert, Modal, TouchableOpacity, Image, StyleSheet, } from 'react-native';
 import { Icon, Button, Card } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
+// import * as SecureStore from 'expo-secure-store';
 
 // Set up Date:
 const dateObj = new Date();
@@ -13,9 +14,17 @@ const year = dateObj.getFullYear();
 const date = `${weekday}, ${month}/${day}/${year}`;
 
 const JournalEntry = ({navigation}) => {
+  console.log('journal entry rendered')
+
+  // Modal State:
+  const [moodModal, setMoodModal] = useState(false);
+  const [imageModal, setImageModal] = useState(false);
+  const [previewModal, setPreviewModal] = useState(false);
 
   // Journal Data State:
+  // const [allEntries, setAllEntries] = useState([])
   const [newEntryData, setNewEntryData] = useState([]);
+  
   const [newEntryTitle, setNewEntryTitle] = useState('');
   const [moodIcon, setMoodIcon] = useState({
     name: 'grin-alt',
@@ -23,17 +32,11 @@ const JournalEntry = ({navigation}) => {
   });
   const [newEntryText, setNewEntryText] = useState('');
   const [newEntryImage, setNewEntryImage] = useState([]);
-  
-  // Modal State:
-  const [moodModal, setMoodModal] = useState(false);
-  const [imageModal, setImageModal] = useState(false);
-  const [previewModal, setPreviewModal] = useState(false);
-
  
   function handleSubmitEntry() {
-    
+
     let allEntries = newEntryData.concat({
-      id: newEntryData,
+      id: newEntryData ? newEntryData : '',
       date: date,
       title: newEntryTitle,
       mood: {
@@ -44,14 +47,12 @@ const JournalEntry = ({navigation}) => {
       images: newEntryImage
     });
 
-    setNewEntryData(allEntries)
+    setNewEntryData(allEntries);
     navigation.navigate('My Journal', {allEntries});
-
     setNewEntryTitle('');
     setMoodIcon({name:'grin-alt',color:colors.mint});
     setNewEntryText('');
     setNewEntryImage([]);
-
     setPreviewModal(!previewModal);
     Alert.alert('Journal entry submitted'); 
   }
@@ -74,7 +75,6 @@ const JournalEntry = ({navigation}) => {
         setNewEntryImage(prevJournalImages => [...prevJournalImages, result.uri]);
         console.log(newEntryImage)
       }
-
   }
 
   const pickCameraImage = async () => {
@@ -92,10 +92,7 @@ const JournalEntry = ({navigation}) => {
         setNewEntryImage(prevJournalImages => [...prevJournalImages, result.uri]);
         console.log(newEntryImage)
       }
-
   }
-
-  console.log('rendered')
 
   return (
     <ScrollView style={styles.container}>
@@ -167,6 +164,7 @@ const JournalEntry = ({navigation}) => {
         <TextInput
           style={styles.title}
           onChangeText={title => setNewEntryTitle(title)}
+          // onChangeText={title => }
           defaultValue={newEntryTitle}
           value={newEntryTitle}
           placeholder='Your Title'
@@ -494,3 +492,25 @@ export default JournalEntry;
     //     }
     //   ]
     // ))
+
+
+  // let newData = {
+  //   id: newEntryData ? newEntryData.length : 0,
+  //   date: date,
+  //   title: newEntryTitle,
+  //   mood: {
+  //     name: moodIcon?.name,
+  //     color: moodIcon?.color
+  //   },
+  //   text: newEntryText,
+  //   images: newEntryImage
+  // }
+  // console.log('NEW DATA:', newData)
+
+  // useEffect(() => {
+  //   setNewEntryData(newData)
+  //   console.log('NEW ENTRY DATA:', JSON.stringify(newEntryData))
+
+  //   setAllEntries(...allEntries, newEntryData)
+  //   console.log('ALL ENTRIES:', JSON.stringify(allEntries))
+  // }, [newData])

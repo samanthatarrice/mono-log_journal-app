@@ -51,6 +51,7 @@ Independently developed and designed for my final Front Stack bootcamp project. 
     <img src="https://cdn-icons-png.flaticon.com/512/5968/5968704.png" width="70" height="70" alt="Figma icon">
     <img src="https://cdn-icons.flaticon.com/png/512/1240/premium/1240970.png?token=exp=1648158823~hmac=41b5d561aea04cdf2f74b6e66c4b888a" width="70" height="70" alt="Git logo">
     <img src="https://cdn-icons.flaticon.com/png/512/3128/premium/3128308.png?token=exp=1648158881~hmac=c0ff44bf2e92b8e4b4dd87e04efe31af" width="70" height="70" alt="Github logo">
+    <img src="https://media.vlpt.us/images/jisoolee11/post/59b75cbb-e395-4dd8-966b-e2b26731fc0c/expo_logo_icon_145293.png" width="70" height="70" alt="Expo logo">
   </div>
 
 * [React-Native](https://reactnative.dev/)
@@ -58,6 +59,7 @@ Independently developed and designed for my final Front Stack bootcamp project. 
 * [React-Native-Elements](https://reactnativeelements.com/)
 * [React-Navigation](https://reactnavigation.org/)
 * [React-Native-Calender](https://github.com/wix/react-native-calendars)
+* [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -126,8 +128,8 @@ Once you have either the emulator or Expo Go installed, you can run it on your l
 * [React To Do List](https://www.youtube.com/watch?v=0kL6nhutjQ8&list=PLYBvEAka-q1hJuwRPYQPlEBBRm7_qGw_2)
 * [Learn React for Free on Scrimba](https://scrimba.com/learn/learnreact)
 * [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
 * [Best Readme Template](https://github.com/othneildrew/Best-README-Template)
+* [Colt Steele's Web Developer Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
