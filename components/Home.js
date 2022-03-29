@@ -7,7 +7,6 @@ const Home = () => {
   console.log('home rendered')
   const [randomQuote, setRandomQuote] = useState([]);
 
-
   useEffect(() => {
     async function getRandomQuote() {
       try {

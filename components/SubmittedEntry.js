@@ -96,30 +96,6 @@ const styles = StyleSheet.create({
 
 export default SubmittedEntry;
 
-//Attempt to persist data with AsyncStorage:
-// if (savedEntries) {
-  //   //To check the input not empty
-  //   AsyncStorage.setItem('any_key_here', JSON.stringify(savedEntries));
-  //   //Resetting the TextInput
-  //   alert('Data Saved');
-  //   //alert to confirm
-  // } else {
-  //   alert('Please fill data');
-  //   //alert for the empty InputText
-  // }
-  
-  // const getSavedData = () => {
-  //   //function to get the value from AsyncStorage
-  //   AsyncStorage.getItem('any_key_here').then(
-  //     (value) => {
-  //       //AsyncStorage returns a promise so adding a callback to get the value
-  //       return setSavedEntries(value)
-  //     }
-  //   );
-  // };
-  //getSavedData
-  
-
   //Attempt to persist data with SecureStore:
   // SecureStore.setItemAsync('savedEntries', JSON.stringify(allEntries))
   //   .catch(error => console.log('COULD NOT SAVE INFO:', error));
@@ -158,3 +134,26 @@ export default SubmittedEntry;
   //   }
   //   getSavedEntries()
   // },[allEntries])
+
+//Attempt to persist data with AsyncStorage:
+// if (savedEntries) {
+  //   //To check the input not empty
+  //   AsyncStorage.setItem('any_key_here', JSON.stringify(savedEntries));
+  //   //Resetting the TextInput
+  //   alert('Data Saved');
+  //   //alert to confirm
+  // } else {
+  //   alert('Please fill data');
+  //   //alert for the empty InputText
+  // }
+  
+  // const getSavedData = () => {
+  //   //function to get the value from AsyncStorage
+  //   AsyncStorage.getItem('any_key_here').then(
+  //     (value) => {
+  //       //AsyncStorage returns a promise so adding a callback to get the value
+  //       return setSavedEntries(value)
+  //     }
+  //   );
+  // };
+  //getSavedData
