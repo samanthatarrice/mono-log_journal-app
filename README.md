@@ -98,6 +98,9 @@ Once you have either the emulator or Expo Go installed, you can run it on your l
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+<div align="center">🎞 <a href="https://drive.google.com/file/d/1w0G_ncjRWgtLXb39pRiBcK_f81mTPxLB/view?usp=sharing">NuCamp Honors Program Video</a> 🎞</div>
+<br/>
+
 <div align="center">
   <img src="components/images/screenshots/Screenshot_20220328-232358.png" alt="screenshot" width="200">
   <img src="components/images/screenshots/Screenshot_20220328-232405.png" alt="screenshot" width="200">
@@ -133,6 +136,7 @@ Once you have either the emulator or Expo Go installed, you can run it on your l
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
+* [NuCamp Bootcamp](https://www.nucamp.co/)
 * [React To Do List](https://www.youtube.com/watch?v=0kL6nhutjQ8&list=PLYBvEAka-q1hJuwRPYQPlEBBRm7_qGw_2)
 * [Learn React for Free on Scrimba](https://scrimba.com/learn/learnreact)
 * [Img Shields](https://shields.io)
