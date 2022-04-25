@@ -47,10 +47,10 @@ Independently developed and designed for my final Front Stack bootcamp project. 
 ### Built With
 
   <div align="center">
-    <img src="https://cdn-icons.flaticon.com/png/512/1183/premium/1183723.png?token=exp=1648158557~hmac=9ba19ff8b84b9c42e37f7b34e4813df4" width=70 height="70" alt="React icon">
+    <img src="https://cdn-icons-png.flaticon.com/512/45/45082.png" width=70 height="70" alt="React icon">
     <img src="https://cdn-icons-png.flaticon.com/512/5968/5968704.png" width="70" height="70" alt="Figma icon">
-    <img src="https://cdn-icons.flaticon.com/png/512/1240/premium/1240970.png?token=exp=1648158823~hmac=41b5d561aea04cdf2f74b6e66c4b888a" width="70" height="70" alt="Git logo">
-    <img src="https://cdn-icons.flaticon.com/png/512/3128/premium/3128308.png?token=exp=1648158881~hmac=c0ff44bf2e92b8e4b4dd87e04efe31af" width="70" height="70" alt="Github logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111420.png" width="70" height="70" alt="Git logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/1051/1051326.png" width="70" height="70" alt="Github logo">
     <img src="https://media.vlpt.us/images/jisoolee11/post/59b75cbb-e395-4dd8-966b-e2b26731fc0c/expo_logo_icon_145293.png" width="70" height="70" alt="Expo logo">
   </div>
 
