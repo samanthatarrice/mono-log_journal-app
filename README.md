@@ -85,7 +85,7 @@ Once you have either the emulator or Expo Go installed, you can run it on your l
    ```
 2. Install NPM packages
    ```sh
-   npm install
+   npm install / yarn install
    ```
 3. Start the app 
    ```sh
