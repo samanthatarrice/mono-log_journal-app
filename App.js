@@ -8,7 +8,8 @@ import {useFonts as useBigShoulders, BigShouldersDisplay_700Bold} from '@expo-go
 import {useFonts as useAnton, Anton_400Regular} from '@expo-google-fonts/anton';
 import AppLoading from 'expo-app-loading';
 
-import Home from './components/Home';
+// import Home from './components/Home';
+import HomeNavigator from './HomeNavigator';
 import JournalEntry from './components/JournalEntry';
 import CalendarComponent from './components/Calendar';
 import SubmittedEntry from './components/SubmittedEntry';
@@ -44,7 +45,6 @@ function App() {
             ({route}) => ({
             tabBarIcon: ({ color }) => {
               let iconName;
-
               if (route.name === 'Home') {
                 iconName = 'home';
               } else if (route.name === 'New Entry') {
@@ -66,7 +66,7 @@ function App() {
             tabBarInactiveTintColor: '#FFF',
           })}
         >
-          <Tab.Screen name='Home' component={Home} />
+          <Tab.Screen name='Home' component={HomeNavigator} />
           <Tab.Screen name='New Entry' component={JournalEntry} />
           <Tab.Screen name='My Journal' component={SubmittedEntry} />
           <Tab.Screen name='Calendar' component={CalendarComponent} />

@@ -1,12 +1,11 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Login from './Login';
 
-const Home = () => {
+const Home = ({navigation}) => {
 
   console.log('home rendered')
   const [randomQuote, setRandomQuote] = useState([]);
@@ -54,7 +53,7 @@ const Home = () => {
           width: 150,
           marginVertical: 0
         }}
-        onPress={() => console.log('koo')}
+        onPress={() => navigation.navigate('Login', {Login})}
       />
       <View>
         <Text 
