@@ -129,6 +129,7 @@ Once you have either the emulator or Expo Go installed, you can run it on your l
 - [ ] Refactor
     - [ ] External CSS stylesheet
     - [ ] Test on IOS
+    - [ ] Namings for components (ex: change JournalEntry.js to NewEntry.js to match title)
 - [ ] User login (backend)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
