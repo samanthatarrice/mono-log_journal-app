@@ -142,6 +142,7 @@ Once you have either the emulator or Expo Go installed, you can run it on your l
 * [Img Shields](https://shields.io)
 * [Best Readme Template](https://github.com/othneildrew/Best-README-Template)
 * [Colt Steele's Web Developer Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/)
+* [Build an Offline-First React Native Mobile App with Expo and Realm](https://www.mongodb.com/developer/how-to/build-offline-first-react-native-mobile-app-with-expo-and-realm/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
