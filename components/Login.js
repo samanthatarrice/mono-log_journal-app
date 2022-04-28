@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { View, Text, TextInput, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import { useAuth } from "../providers/AuthProvider";
-import styles from "../stylesheet";
+// import styles from "../stylesheet";
 
 const Login = () => {
 
@@ -32,7 +32,7 @@ const Login = () => {
 
   // The onPressSignUp method calls AuthProvider.signUp with the email/password in state and then signs in.
   const onPressSignUp = async () => {
-    console.log'"Trying signup with user: ' + email);
+    console.log('Trying signup with user: ' + email);
     try {
       await signUp(email, password);
       signIn(email, password);
@@ -113,15 +113,16 @@ const Login = () => {
   );
 }
 
+export default Login;
+
 const styles = StyleSheet.create({
   container: {
-    padding:16,
-    backgroundColor:'#C1F8CF',
-    height:'100%',
-    display:'flex',
-    alignItems:'center',
+    padding: 16,
+    backgroundColor: '#C1F8CF',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center'
   }
 })
 
-export default Login;
